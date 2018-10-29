@@ -1,0 +1,65 @@
+boards:
+  - type: power-v4
+    quantity: 17
+  - type: motor-v4
+    quantity: 16
+  - type: servo-v4
+    quantity: 25
+
+substitutions:
+  # Unusual or unqueryable distributors. Replace with same part from a different distributor.
+  - replace: wurth 7460305
+    with: farnell 1821273
+  - replace: verical VNH5019A-E
+    with: mouser 511-VNH5019ATR-E
+  - replace: digikey 609-4048-6-ND
+    with: farnell 2490660
+
+  # Generic passives that are out of stock. Replace with any compatible part.
+  - replace: farnell 1758896
+    with: farnell 1759388
+  - replace: farnell 1758924
+    with: farnell 2470416
+  - replace: farnell 2070502
+    with: farnell 2522501
+  - replace: farnell 1758991
+    with: farnell 2896343
+  - replace: farnell 1758993
+    with: farnell 3019391
+  - replace: farnell 1759381
+    with: farnell 1458896
+  - replace: farnell 2112839
+    with: farnell 2495171
+  - replace: farnell 1759389
+    with: rs 839-1676
+  - replace: farnell 1867956
+    with: farnell 2494270
+  - replace: farnell 1759467
+    with: mouser 963-EMK325BJ226MM-T
+  - replace: farnell 1414584
+    with: farnell 2821220
+  - replace: farnell 1797017
+    with: farnell 2688488
+  - replace: farnell 1865445
+    with: farnell 2533998
+  - replace: farnell 1759116
+    with: farnell 2496867
+  - replace: farnell 1828809
+    with: farnell 1650902
+  - replace: farnell 1833814
+    with: farnell 2409055
+
+  # Specific parts that are out of stock. Replace with same part from a different distributor.
+  - replace: farnell 1580575
+    with: rs 715-1708
+
+  # Obsolete parts. Replace with as close a match as possible.
+  # mfr part no GSOT05C-GS08 > GSOT05C-E3-08 (mouser's suggested replacement)
+  - replace: mouser 78-GSOT05C
+    with: mouser 78-GSOT05C-E3-08
+  # mfr part no GSOT24C-GS08 > GSOT24C-E3-08 (mouser's suggested replacement)
+  - replace: mouser 78-GSOT24C
+    with: mouser 78-GSOT24C-E3-08
+  # mfr part no 0ZCA0005FF2E > 0ZCJ0005FF2E (digikey's suggested replacement)
+  - replace: digikey 507-1476-1-ND
+    with: mouser 530-0ZCJ0005FF2E
