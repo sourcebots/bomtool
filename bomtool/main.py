@@ -11,10 +11,6 @@ from .distributor.mouser import MouserAPI
 from .tasks import load_boms, join, transform, check
 from .board_type import BoardType
 
-RED = "\x1b[31m"
-YELLOW = "\x1b[33m"
-RESET = "\x1b[39m"
-
 def parse_cmdline():
   parser = argparse.ArgumentParser()
   parser.add_argument("config_file", help="path to a config.yaml")
