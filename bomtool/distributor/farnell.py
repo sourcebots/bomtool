@@ -32,7 +32,7 @@ class FarnellPart(DistributorPart):
     if string in ("New product", "No Longer Manufactured", "No Longer Stocked"):
       return {"status": AvailabilityStatus.NOT_STOCKED}
 
-    match = re.match(r"^([0-9,]+) In stock$", string)
+    match = re.match(r"^([0-9,]+) In stock$", string, re.IGNORECASE)
     if match:
       quantity = match.group(1)
       return {
