@@ -15,7 +15,7 @@ class Downloader(object):
 
   def get_path(self, url, *, max_age=None):
     cache_key = f"url:{url}"
-    path = self.cache.get(cache_key)
+    path = self.cache.get(cache_key, max_age=max_age)
     if path is None:
       content = self.download(url)
       path = self.cache.put(cache_key, content)
