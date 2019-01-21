@@ -16,28 +16,18 @@ substitutions:
     with: farnell 2490660
 
   # Generic passives that are out of stock. Replace with any compatible part.
-  - replace: farnell 1758896
-    with: farnell 1759388
   - replace: farnell 1758924
     with: farnell 2470416
   - replace: farnell 2070502
     with: farnell 2522501
-  - replace: farnell 1758991
-    with: farnell 2896343
-  - replace: farnell 1758993
-    with: farnell 3019391
   - replace: farnell 1759381
     with: farnell 1458896
   - replace: farnell 2112839
     with: farnell 2495171
-  - replace: farnell 1759389
-    with: rs 839-1676
   - replace: farnell 1867956
     with: farnell 2494270
   - replace: farnell 1759467
     with: mouser 963-EMK325BJ226MM-T
-  - replace: farnell 1414584
-    with: farnell 2821220
   - replace: farnell 1797017
     with: farnell 2688488
   - replace: farnell 1865445
@@ -48,10 +38,24 @@ substitutions:
     with: farnell 1650902
   - replace: farnell 1833814
     with: farnell 2409055
+  - replace: farnell 9330399
+    with: farnell 2447230
+  - replace: farnell 2072517
+    with: farnell 9232885
+  - replace: farnell 2072648
+    with: farnell 2861834
+  - replace: farnell 2072516
+    with: farnell 2861400
+  - replace: farnell 2072548
+    with: farnell 2447121
+  - replace: farnell 2072927
+    with: farnell 2861818
 
   # Specific parts that are out of stock. Replace with same part from a different distributor.
   - replace: farnell 1580575
     with: rs 715-1708
+  - replace: farnell 1679978
+    with: mouser 755-EDZTE615.1B
 
   # Obsolete parts. Replace with as close a match as possible.
   # mfr part no GSOT05C-GS08 > GSOT05C-E3-08 (mouser's suggested replacement)
@@ -63,3 +67,8 @@ substitutions:
   # mfr part no 0ZCA0005FF2E > 0ZCJ0005FF2E (digikey's suggested replacement)
   - replace: digikey 507-1476-1-ND
     with: mouser 530-0ZCJ0005FF2E
+  # mfr part no BSH121,135 -> BSS138BKW,115 (nexperia's suggested replacement)
+  # Note that the Farnell product page for BSH121,135 is wrong and the Ids of the
+  # BSH121,135 is actually 300mA; hence there is no problem in switching to a 320mA part.
+  - replace: farnell 1758072
+    with: farnell 2053836
