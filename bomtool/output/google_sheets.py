@@ -31,10 +31,9 @@ class GoogleSheetsOutput(object):
     ] + [line.quantity_per_board.get(board, "") for board in self.boards] + [
       line.quantity_needed if line.quantity_needed is not None else "",
       line.quantity_to_buy if line.quantity_to_buy is not None else "",
-    ] + [line.quantity_to_buy_per_board.get(board, "") for board in self.boards] + [
       line.unit_price if line.unit_price is not None else "",
       line.line_price if line.line_price is not None else "",
-      line.line_price*decimal.Decimal('1.2') if line.line_price is not None else "",
+    ] + [line.board_cost_contribution.get(board, "") for board in self.boards] + [
       line.description,
     ] + [line.sr_line_no_by_board.get(board, "") for board in self.boards]
     return list(map(str, row))
@@ -49,10 +48,9 @@ class GoogleSheetsOutput(object):
     ] + [f"Quantity needed per {board.name}" for board in self.boards] + [
       "Quantity needed",
       "Quantity to buy",
-    ] + [f"Quantity to buy per {board.name}" for board in self.boards] + [
-      "Unit price excl tax",
-      "Line price excl tax",
-      "Line price incl tax",
+      "Unit price",
+      "Line price",
+    ] + [f"Approx contribution towards cost of {board.name}" for board in self.boards] + [
       "Description",
     ] + [f"Line no in {board.name} BOM" for board in self.boards]
     return row

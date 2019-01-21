@@ -81,16 +81,15 @@ class JoinedBOMLine(_JoinedBOMLine_nt):
     return self.quantity_to_buy * self.unit_price
 
   @cached_property
-  def quantity_to_buy_per_board(self):
+  def board_cost_contribution(self):
+    if self.line_price is None:
+      return {board: None for board in self.quantity_per_board.keys()}
     res = {}
     for board, quantity_needed_on_board in self.quantity_per_board.items():
       weight = (quantity_needed_on_board * board.quantity) / self.quantity_needed
-      res[board] = int(round(self.quantity_to_buy * weight))
-    if sum(res.values()) != self.quantity_to_buy:
-      logging.warning("%s: correcting rounding error in quantity_to_buy_per_board (%d, %d)", self.sr_part_no, sum(res.values()), self.quantity_to_buy)
-      random_board = random.choice(list(res.keys()))
-      res[random_board] = self.quantity_to_buy - sum(q for b, q in res.items() if b is not random_board)
-    assert sum(res.values()) == self.quantity_to_buy
+      contribution_to_board_type = float(self.line_price) * weight
+      contribution_to_single_board = contribution_to_board_type / board.quantity
+      res[board] = contribution_to_single_board
     return res
 
   def __str__(self):
@@ -103,7 +102,7 @@ class JoinedBOMLine(_JoinedBOMLine_nt):
       f"quantity_per_board: {quantity_per_board}",
       f"quantity_needed: {self.quantity_needed}",
       f"quantity_to_buy: {self.quantity_to_buy}",
-      f"quantity_to_buy_by_board: {self.quantity_to_buy_by_board}",
+      f"board_cost_contribution: {self.board_cost_contribution}",
       f"price_point: {self.price_point}",
       f"unit_price: £{self.unit_price}",
       f"line_price: £{self.line_price}",
