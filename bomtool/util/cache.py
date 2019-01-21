@@ -13,10 +13,10 @@ class Cache(object):
   def get(self, key, *, max_age=None):
     path = self.path_for_key(key)
     if not path.exists():
-      self.logger.debug("miss %s", key)
+      self.logger.debug("miss(new) %s", key)
       return None
     elif max_age is not None and older_than(path, max_age):
-      self.logger.debug("miss %s", key)
+      self.logger.debug("miss(expired) %s", key)
       return None
     else:
       self.logger.debug("hit %s", key)
