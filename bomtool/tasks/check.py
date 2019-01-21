@@ -1,4 +1,7 @@
+from collections import namedtuple
 from ..util import AvailabilityStatus
+
+CheckedLine = namedtuple("CheckedLine", ("line", "errors", "warnings"))
 
 def check(lines):
   for line in lines:
@@ -20,4 +23,4 @@ def check(lines):
         errors.append("not stocked (e.g. part is obsolete)")
       else:
         errors.append(f"unknown availability status ({status})")
-    yield (line, errors, warnings)
+    yield CheckedLine(line, errors, warnings)

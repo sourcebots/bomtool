@@ -1,11 +1,10 @@
-import sys
-import csv
-import decimal
 import logging
 import argparse
 import yaml
 from .util.cache import Cache
 from .util.downloader import Downloader
+from .util.google_sheets_api import GoogleSheetsAPI
+from .output.google_sheets import GoogleSheetsOutput
 from .distributor import DistributorPartFactory
 from .distributor.mouser import MouserAPI
 from .tasks import load_boms, join, transform, check
@@ -14,6 +13,7 @@ from .board_type import BoardType
 def parse_cmdline():
   parser = argparse.ArgumentParser()
   parser.add_argument("config_file", help="path to a config.yaml")
+  parser.add_argument("output", help="output format specifier in format googlesheet:SPREADSHEET_ID:SHEET_NAME")
   return parser.parse_args()
 
 def parse_config(path):
@@ -31,12 +31,24 @@ def parse_boards(config):
     boards.append(board)
   return boards
 
+def construct_output(spec, boards):
+  # TODO: ideally, we shouldn't need to pass 'boards' to this function.
+  kind, param = spec.split(":", 1)
+  if kind == "googlesheet":
+    spreadsheet_id, sheet_name = param.split(":", 1)
+    google_sheets_api = GoogleSheetsAPI()
+    sheet = google_sheets_api.spreadsheet(spreadsheet_id).sheet(sheet_name)
+    return GoogleSheetsOutput(sheet, boards)
+  else:
+    raise ValueError(f"unsupported output kind: {kind}")
+
 def main():
   logging.basicConfig(level=logging.INFO)
 
   args = parse_cmdline()
   config = parse_config(args.config_file)
   boards = parse_boards(config)
+  output = construct_output(args.output, boards)
 
   cache = Cache()
   downloader = Downloader(cache)
@@ -47,58 +59,8 @@ def main():
   lines = join(board_boms, distributor_part_factory)
   lines = sorted(lines, key = lambda l: l.sr_part_no)
   lines = transform(lines, config)
-  total = decimal.Decimal(0)
-  writer = csv.DictWriter(sys.stdout, (
-    "SR part no",
-    "Notes",
-    "Distributor",
-    "Distributor order no",
-    # "Quantity needed per PB",
-    # "Quantity needed per MB",
-    # "Quantity needed per SB",
-    "Quantity needed",
-    "Quantity to buy",
-    # "Quantity to buy per PB",
-    # "Quantity to buy per MB",
-    # "Quantity to buy per SB",
-    # "Price point",
-    "Unit price excl tax",
-    "Line price excl tax",
-    "Line price incl tax",
-    "Description",
-    # "Line no in SR PB BOM",
-    # "Line no in SR MB BOM",
-    # "Line no in SR SB BOM",
-  ))
-  writer.writeheader()
-  for line, errors, warnings in check(lines):
-    notes = "\n".join(errors + warnings)
-    writer.writerow({
-      "SR part no": line.sr_part_no,
-      "Notes": notes,
-      "Distributor": line.distributor,
-      "Distributor order no": line.distributor_order_no,
-      # "Quantity needed per PB": line.quantity_per_board.get(pb, ""),
-      # "Quantity needed per MB": line.quantity_per_board.get(mb, ""),
-      # "Quantity needed per SB": line.quantity_per_board.get(sb, ""),
-      "Quantity needed": line.quantity_needed,
-      "Quantity to buy": line.quantity_to_buy,
-      # "Quantity to buy per PB": line.quantity_to_buy_per_board.get(pb, ""),
-      # "Quantity to buy per MB": line.quantity_to_buy_per_board.get(mb, ""),
-      # "Quantity to buy per SB": line.quantity_to_buy_per_board.get(sb, ""),
-      # "Price point": line.price_point,
-      "Unit price excl tax": f"£{line.unit_price}" if line.unit_price is not None else "",
-      "Line price excl tax": f"£{line.line_price}" if line.line_price is not None else "",
-      "Line price incl tax": f"£{line.line_price*decimal.Decimal('1.2')}" if line.line_price is not None else "",
-      "Description": line.description,
-      # "Line no in SR PB BOM": line.sr_line_no_by_board.get(pb, ""),
-      # "Line no in SR MB BOM": line.sr_line_no_by_board.get(mb, ""),
-      # "Line no in SR SB BOM": line.sr_line_no_by_board.get(sb, ""),
-    })
-    if line.line_price is not None:
-      total += line.line_price
-  logging.info("Total: £%s", total)
-
+  checked_lines = check(lines)
+  output.output(checked_lines)
 
 if __name__ == "__main__":
   main()
