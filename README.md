@@ -14,15 +14,21 @@ In the future, this will hopefully:
 
 ## Usage
 
-Check out this repo and `cd` to it, then run:
+Check out this repo and `cd` to it.
+
+Install dependencies by running `pipenv install --pre`. `--pre` is required because currently only pre-release versions of `pyyaml` are [considered secure](https://nvd.nist.gov/vuln/detail/CVE-2017-18342).
+
+Set up environment variables:
+
+* `SB_BOMTOOL_MOUSER_API_KEY`: A valid [Mouser API](https://www.mouser.co.uk/apihome/) key.
+* `SB_BOMTOOL_GOOGLE_API_CREDS`: Filename of a Google API `credentials.json` file (containing client ID, client secret and metadata). You can generate one on the [Google Cloud Platform Console](https://console.cloud.google.com/apis/credentials).
+
+Execute `bomtool` by running:
 
 ```sh
-pipenv install --pre
-pipenv run python -m bomtool path/to/config.yaml OUTPUTSPEC
+pipenv run python -m bomtool path/to/config.yaml OUTPUT_SPEC
 ```
 
-where currently the only valid form of `OUTPUTSPEC` is `googlesheet:SPREADSHEET_ID:SHEET_NAME`. Here, `SPREADSHEET_ID` should be replaced with the long alphanumeric identifier present in the URL of the spreadsheet, and `SHEET_NAME` should be replaced with the name of the sheet (tabs at the bottom left) to overwrite.
-
-`--pre` must be passed to `pipenv install` since currently only pre-release versions of `pyyaml` are [considered secure](https://nvd.nist.gov/vuln/detail/CVE-2017-18342).
+where currently the only valid form of `OUTPUT_SPEC` is `googlesheet:SPREADSHEET_ID:SHEET_NAME`. Here, `SPREADSHEET_ID` should be replaced with the long alphanumeric identifier present in the URL of the spreadsheet, and `SHEET_NAME` should be replaced with the name of the sheet (tabs at the bottom left) to overwrite.
 
 See `configs/smallpeice2019.yaml` for an example of a `config.yaml`.
