@@ -14,8 +14,13 @@ In the future, this will hopefully:
 
 ## Usage
 
+Check out this repo and `cd` to it, then run:
+
 ```sh
+pipenv install --pre
 pipenv run python -m bomtool path/to/config.yaml
 ```
+
+`--pre` must be passed to `pipenv install` since currently only pre-release versions of `pyyaml` are [considered secure](https://nvd.nist.gov/vuln/detail/CVE-2017-18342).
 
 See `configs/smallpeice2019.yaml` for an example of a `config.yaml`.
