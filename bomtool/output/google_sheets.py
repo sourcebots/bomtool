@@ -35,7 +35,8 @@ class GoogleSheetsOutput(object):
       line.line_price if line.line_price is not None else "",
     ] + [line.board_cost_contribution.get(board, "") for board in self.boards] + [
       line.description,
-    ] + [line.sr_line_no_by_board.get(board, "") for board in self.boards]
+    ] + [line.sr_line_no_by_board.get(board, "") for board in self.boards] \
+      + [", ".join(line.instances_by_board.get(board, [])) for board in self.boards]
     return list(map(str, row))
 
   @cached_property
@@ -52,5 +53,6 @@ class GoogleSheetsOutput(object):
       "Line price",
     ] + [f"Approx contribution towards cost of {board.name}" for board in self.boards] + [
       "Description",
-    ] + [f"Line no in {board.name} BOM" for board in self.boards]
+    ] + [f"Line no in {board.name} BOM" for board in self.boards] \
+      + [f"Instances on {board.name}" for board in self.boards]
     return row
