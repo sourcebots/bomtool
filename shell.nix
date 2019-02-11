@@ -8,6 +8,7 @@
 pkgs.stdenv.mkDerivation {
   name = "sb-bomtool-env";
   buildInputs = with pkgs; [
+    python36
     pipenv
     libxml2
     libxslt
