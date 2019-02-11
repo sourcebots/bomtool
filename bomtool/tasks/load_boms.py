@@ -24,12 +24,18 @@ def load_bom(board, downloader):
     if cell.ctype != 1 or cell.value not in expected_contents:
       raise ValueError(f"invalid header cell: {cell.value}")
   for row in rows:
+    sr_part_no = row[1].value.strip()
+    package = row[4].value.strip()
+    # Hack to fix the fact that sr-led-redgreen-0805 is used to identify two different parts in the different upstream BOMs
+    if sr_part_no == "sr-led-redgreen-0805" and package != "0805":
+      assert package == "0805_split"
+      sr_part_no = "sr-led-redgreen-dual"
     yield OriginalBOMLine(
       line_no = int(row[0].value),
-      sr_part_no = row[1].value.strip(),
+      sr_part_no = sr_part_no,
       quantity = int(row[2].value),
       description = row[3].value.strip(),
-      package = row[4].value.strip(),
+      package = package,
       distributor = row[5].value.strip(),
       distributor_order_no = row[6].value.strip(),
       manufacturer = row[7].value.strip(),
