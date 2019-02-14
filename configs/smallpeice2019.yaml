@@ -68,6 +68,24 @@ substitutions:
     with: rs 715-1708
   - replace: farnell 1679978
     with: mouser 755-EDZTE615.1B
+  - replace: farnell 2313635
+    with: mouser 584-ADUM3211ARZ
+  - replace: farnell 2064680
+    with: mouser 926-LMR14203XMK/NOPB
+  - replace: farnell 2292500
+    with: mouser 875-TYS252012L220M10
+  - replace: farnell 1651958
+    with: mouser 863-STF202-22T1G
+  - replace: rs 445-781
+    with: mouser 511-VND5012AKTR-E
+
+  # Specific parts that are out of stock. Replace with as close a match as possible.
+  # mfr part no CAY10-103J4LF -> YC124-JR-0710KL (farnell's suggested alternative)
+  - replace: farnell 1770152
+    with: farnell 9235418
+  # mfr part no CTB93HE/2 -> MC1,5/2-G-3,81 (farnell's suggested alternative)
+  - replace: farnell 1717071
+    with: farnell 3704725
 
   # Obsolete parts. Replace with as close a match as possible.
   # mfr part no GSOT05C-GS08 > GSOT05C-E3-08 (mouser's suggested replacement)
@@ -84,3 +102,10 @@ substitutions:
   # BSH121,135 is actually 300mA; hence there is no problem in switching to a 320mA part.
   - replace: farnell 1758072
     with: farnell 2053836
+  # mfr part no IRFH5301TR2PBF -> IRFH5301TRPBF (International Rectifier EOL Notice #259)
+  # This is exactly the same part, just different packaging.
+  - replace: farnell 1782047
+    with: farnell 2580009
+  # mfr part no MPI4040R3-3R3-R -> ECS-MPI4040R3-3R3-R
+  - replace: farnell 2145279
+    with: mouser 520-MPI4040R3-3R3-R
