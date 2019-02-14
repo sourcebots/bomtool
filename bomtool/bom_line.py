@@ -5,6 +5,8 @@ from collections import namedtuple
 from wimpy import cached_property
 from .config import SPARES
 
+GENERIC = object()
+
 OriginalBOMLine = namedtuple("OriginalBOMLine", (
   "line_no",
   "sr_part_no",

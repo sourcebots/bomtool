@@ -3,12 +3,16 @@ from ..util import AvailabilityStatus
 
 CheckedLine = namedtuple("CheckedLine", ("line", "errors", "warnings"))
 
+from ..bom_line import GENERIC
+
 def check(lines):
   for line in lines:
     errors = []
     warnings = []
 
-    if line.distributor_part is None:
+    if line.distributor is GENERIC:
+      pass
+    elif line.distributor_part is None:
       errors.append(f"can't automatically query distributor: {line.distributor}")
     else:
       status = line.distributor_part.availability_status
