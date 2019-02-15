@@ -78,6 +78,8 @@ substitutions:
     with: mouser 863-STF202-22T1G
   - replace: rs 445-781
     with: mouser 511-VND5012AKTR-E
+  - replace: farnell 2079908
+    with: tme KPB-2012SURKCGKC
 
   # Specific parts that are out of stock. Replace with as close a match as possible.
   # mfr part no CAY10-103J4LF -> YC124-JR-0710KL (farnell's suggested alternative)
