@@ -2,6 +2,7 @@ from .base import DistributorPart
 from .farnell import FarnellPart
 from .rs import RSPart
 from .mouser import MouserPart
+from .tme import TMEPart
 
 class DistributorPartFactory(object):
   def __init__(self, downloader, mouser_api):
@@ -15,5 +16,7 @@ class DistributorPartFactory(object):
       return RSPart(order_code, self.downloader)
     elif distributor == "mouser":
       return MouserPart(order_code, self.mouser_api)
+    elif distributor == "tme":
+      return TMEPart(order_code)
     else:
       return None
