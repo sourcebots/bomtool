@@ -56,7 +56,6 @@ class TMEPart(DistributorPart):
 
   @cached_property
   def price_points(self):
-    print(self._price_table_soup.prettify())
     tags = self._price_table_soup.find("tbody").find_all("tr")
     price_points = []
     for tag in tags:
