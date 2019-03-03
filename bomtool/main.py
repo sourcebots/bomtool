@@ -13,7 +13,7 @@ from .board_type import BoardType
 def parse_cmdline():
   parser = argparse.ArgumentParser()
   parser.add_argument("config_file", help="path to a config.yaml")
-  parser.add_argument("output", help="output format specifier in format googlesheet:SPREADSHEET_ID:SHEET_NAME")
+  parser.add_argument("output", help="output format specifier in format googlesheet:SPREADSHEET_ID")
   return parser.parse_args()
 
 def parse_config(path):
@@ -27,7 +27,7 @@ def parse_boards(config):
   boards = []
   for board_config in config["boards"]:
     board_class = BoardType.get_by_name(board_config["type"])
-    board = board_class(board_config["quantity"])
+    board = board_class(board_config["quantity"], board_config.get("dest_sheet"), board_config.get("exclude", []))
     boards.append(board)
   return boards
 
@@ -35,10 +35,10 @@ def construct_output(spec, boards):
   # TODO: ideally, we shouldn't need to pass 'boards' to this function.
   kind, param = spec.split(":", 1)
   if kind == "googlesheet":
-    spreadsheet_id, sheet_name = param.split(":", 1)
+    spreadsheet_id = param
     google_sheets_api = GoogleSheetsAPI()
-    sheet = google_sheets_api.spreadsheet(spreadsheet_id).sheet(sheet_name)
-    return GoogleSheetsOutput(sheet, boards)
+    spreadsheet = google_sheets_api.spreadsheet(spreadsheet_id)
+    return GoogleSheetsOutput(spreadsheet, boards)
   else:
     raise ValueError(f"unsupported output kind: {kind}")
 

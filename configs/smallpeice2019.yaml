@@ -1,10 +1,23 @@
 boards:
   - type: power-v4
     quantity: 17
+    dest_sheet: PowerBoard
+    exclude:
+      - C11
+      - F1
+      - X2
+      - J5
   - type: motor-v4
     quantity: 16
+    dest_sheet: MotorBoard
+    exclude:
+      - D14
+      - R2
+      - R3
+      - R11
   - type: servo-v4
     quantity: 25
+    dest_sheet: ServoBoard
 
 generics:
   sr-c-100n-0402-16v: SMD Capacitor, 100nF, 10%, 16V, 0402

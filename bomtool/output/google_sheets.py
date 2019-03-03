@@ -11,8 +11,8 @@ def normalise_cell(x):
     return str(x)
 
 class GoogleSheetsOutput(object):
-  def __init__(self, sheet, boards):
-    self.sheet = sheet
+  def __init__(self, spreadsheet, boards):
+    self.spreadsheet = spreadsheet
     self.boards = boards
 
   def generate_sheet_name(self):
@@ -20,15 +20,24 @@ class GoogleSheetsOutput(object):
     return f"bomtool-{timestamp}"
 
   def output(self, checked_lines):
-    self.sheet.clear()
-    self.sheet.append(self._to_rows(checked_lines))
+    sheet_rows = self._to_rows(checked_lines)
+    for sheet_name, rows in sheet_rows:
+      sheet = self.spreadsheet.sheet(sheet_name)
+      sheet.clear()
+      sheet.append(rows)
 
   def _to_rows(self, checked_lines):
-    yield self._header_row
+    combined_rows = [self._combined_header_row]
+    board_rows = {board: [self._board_header_row(board)] for board in self.boards}
     for checked_line in checked_lines:
-      yield self._to_row(checked_line)
+      row = self._to_combined_row(checked_line)
+      combined_rows.append(row)
+      for board in checked_line.line.sr_line_no_by_board.keys():
+        row = self._to_board_row(checked_line, board)
+        board_rows[board].append(row)
+    return [("Combined", combined_rows)] + [(board.dest_sheet, rows) for board, rows in board_rows.items()]
 
-  def _to_row(self, checked_line):
+  def _to_combined_row(self, checked_line):
     line = checked_line.line
     notes = "\n".join(checked_line.errors + checked_line.warnings)
     if line.distributor is GENERIC:
@@ -64,7 +73,7 @@ class GoogleSheetsOutput(object):
     return list(map(normalise_cell, row))
 
   @cached_property
-  def _header_row(self):
+  def _combined_header_row(self):
     row = [
       "SR part no",
       "Notes",
@@ -79,4 +88,44 @@ class GoogleSheetsOutput(object):
       "Description",
     ] + [f"Line no in {board.name} BOM" for board in self.boards] \
       + [f"Instances on {board.name}" for board in self.boards]
+    return row
+
+  def _to_board_row(self, checked_line, board):
+    line = checked_line.line
+    notes = "\n".join(checked_line.errors + checked_line.warnings)
+    if line.distributor is GENERIC:
+      row = [
+        line.sr_line_no_by_board.get(board),
+        line.sr_part_no,
+        "any",
+        "any",
+        line.quantity_per_board.get(board),
+        line.description,
+        ", ".join(line.instances_by_board.get(board, [])),
+        notes,
+      ]
+    else:
+      row = [
+        line.sr_line_no_by_board.get(board),
+        line.sr_part_no,
+        line.distributor,
+        line.distributor_order_no,
+        line.quantity_per_board.get(board),
+        line.description,
+        ", ".join(line.instances_by_board.get(board, [])),
+        notes,
+      ]
+    return list(map(normalise_cell, row))
+
+  def _board_header_row(self, board):
+    row = [
+      f"Line no in {board.name} BOM",
+      "SR part no",
+      "Distributor",
+      "Distributor order no",
+      f"Quantity per {board.name}",
+      "Description",
+      f"Instances on {board.name}",
+      "Notes",
+    ]
     return row

@@ -2,8 +2,10 @@ from abc import ABCMeta, abstractmethod
 from wimpy import cached_property
 
 class BoardType(object, metaclass=ABCMeta):
-  def __init__(self, quantity):
+  def __init__(self, quantity, dest_sheet, exclude):
     self.quantity = quantity
+    self.dest_sheet = dest_sheet
+    self.exclude = set(exclude)
 
   def __str__(self):
     return self.name

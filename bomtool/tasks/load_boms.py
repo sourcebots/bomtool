@@ -24,6 +24,11 @@ def load_bom(board, downloader):
     if cell.ctype != 1 or cell.value not in expected_contents:
       raise ValueError(f"invalid header cell: {cell.value}")
   for row in rows:
+    instances = set(refdes.strip() for refdes in row[9].value.split(","))
+    instances -= board.exclude
+    if not instances:
+      logging.info("%s: skipping due to exclusion rules", line.sr_part_no)
+      continue
     sr_part_no = row[1].value.strip()
     package = row[4].value.strip()
     # Hack to fix the fact that sr-led-redgreen-0805 is used to identify two different parts in the different upstream BOMs
@@ -40,7 +45,7 @@ def load_bom(board, downloader):
       distributor_order_no = row[6].value.strip(),
       manufacturer = row[7].value.strip(),
       manufacturer_part_no = row[8].value.strip(),
-      instances = set(refdes.strip() for refdes in row[9].value.split(",")),
+      instances = instances,
     )
 
 def load_boms(boards, downloader):

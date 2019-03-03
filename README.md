@@ -29,10 +29,10 @@ Execute `bomtool` by running:
 pipenv run python -m bomtool path/to/config.yaml OUTPUT_SPEC
 ```
 
-where currently the only valid form of `OUTPUT_SPEC` is `googlesheet:SPREADSHEET_ID:SHEET_NAME`. Here, `SPREADSHEET_ID` should be replaced with the long alphanumeric identifier present in the URL of the spreadsheet, and `SHEET_NAME` should be replaced with the name of the sheet (tabs at the bottom left) to overwrite.
+where currently the only valid form of `OUTPUT_SPEC` is `googlesheet:SPREADSHEET_ID`. Here, `SPREADSHEET_ID` should be replaced with the long alphanumeric identifier present in the URL of the spreadsheet.
 
 For example:
 
 ```sh
-pipenv run python -m bomtool configs/smallpeice2019.yaml googlesheet:1eTEkgsXN6JzumoYiGoEkO7YOBuCE3r4QvOJFlK_qb0s:Sheet1
+pipenv run python -m bomtool configs/smallpeice2019.yaml googlesheet:1eTEkgsXN6JzumoYiGoEkO7YOBuCE3r4QvOJFlK_qb0s
 ```
