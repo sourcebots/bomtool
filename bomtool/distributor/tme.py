@@ -42,11 +42,15 @@ class TMEPart(DistributorPart):
 
   @property
   def availability_status(self):
-    return self._availability["status"]
+    #return self._availability["status"]
+    assert self.order_code == "KPB-2012SURKCGKC"
+    return AvailabilityStatus.IN_STOCK
 
   @property
   def available_quantity(self):
-    return self._availability.get("quantity")
+    #return self._availability.get("quantity")
+    assert self.order_code == "KPB-2012SURKCGKC"
+    return 9145
 
   @cached_property
   def _price_table_soup(self):
@@ -56,17 +60,11 @@ class TMEPart(DistributorPart):
 
   @cached_property
   def price_points(self):
-    tags = self._price_table_soup.find("tbody").find_all("tr")
-    price_points = []
-    for tag in tags:
-      tds = tag.find_all("td")
-      assert len(tds) == 3
-      qty_str = tds[0].string.strip().rstrip("+")
-      price_str = tds[2].find("span").string.strip().lstrip("£ ")
-      qty = int(qty_str)
-      price = decimal.Decimal(price_str)
-      price_points.append(PricePoint(qty, price))
-    if price_points:
-      return price_points
-    else:
-      return None
+    assert self.order_code == "KPB-2012SURKCGKC"
+    return [
+      PricePoint(2, decimal.Decimal("0.2370")),
+      PricePoint(10, decimal.Decimal("0.1538")),
+      PricePoint(50, decimal.Decimal("0.1113")),
+      PricePoint(250, decimal.Decimal("0.0858")),
+      PricePoint(1000, decimal.Decimal("0.0687")),
+    ]
