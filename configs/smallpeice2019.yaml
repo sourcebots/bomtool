@@ -4,8 +4,6 @@ boards:
     dest_sheet: PowerBoard
     exclude:
       - C11
-      - F1
-      - X2
       - J5
   - type: motor-v4
     quantity: 16
