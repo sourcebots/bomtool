@@ -19,7 +19,7 @@ class TMEPart(DistributorPart):
   def _json(self):
     # TODO: caching
     return requests.post(
-      "https://www.tme.eu/en/_ajax/ProductInformationPage/_getStocks.html",
+      "https://www.tme.eu/_ajax/ProductInformationPage/_getStocks.html",
       data = {"symbol": self.order_code},
       headers = {"X-Requested-With": "XMLHttpRequest"},
     ).json()
