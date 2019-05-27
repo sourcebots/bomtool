@@ -74,6 +74,50 @@ substitutions:
   - replace: digikey 609-4048-6-ND
     with: farnell 2490660
 
+  # Generic parts that are out of stock. Replace with any compatible part.
+  - replace: farnell 1758924
+    with: farnell 2533995
+  - replace: farnell 2070502
+    with: farnell 2113073
+  - replace: farnell 1759381
+    with: farnell 1458896
+  - replace: farnell 2112839
+    with: farnell 2495171
+  - replace: farnell 1867956
+    with: farnell 2611932
+  - replace: farnell 1759467
+    with: farnell 1759466
+  - replace: farnell 1797017
+    with: farnell 2688488
+  - replace: farnell 1865445
+    with: farnell 2627357
+  - replace: farnell 1828809
+    with: mouser 81-GRT31CR61A476KE3L
+  - replace: farnell 1833814
+    with: farnell 2776871
+  - replace: farnell 9330399
+    with: farnell 2447230
+  - replace: farnell 2072516
+    with: farnell 2078861
+  - replace: farnell 2073606
+    with: farnell 2447587
+  - replace: farnell 2072927
+    with: farnell 1469709
+  - replace: farnell 2073030
+    with: farnell 2447185
+  - replace: farnell 2073149
+    with: mouser 603-RC0402FR-07576KL
+  - replace: farnell 1593441
+    with: farnell 1022233
+  - replace: farnell 2073877
+    with: farnell 2447473
+  - replace: farnell 2141492
+    with: farnell 2447191
+  - replace: farnell 2073064
+    with: farnell 1469712
+  - replace: farnell 2073129
+    with: farnell 2447197
+
   # Specific parts that are out of stock. Replace with same part from a different distributor.
   - replace: farnell 1580575
     with: rs 715-1708
@@ -91,6 +135,12 @@ substitutions:
     with: mouser 511-VND5012AKTR-E
   - replace: farnell 2079908
     with: tme KPB-2012SURKCGKC
+  - replace: farnell 3882391
+    with: rapid 21-2448
+  - replace: farnell 2076909
+    with: mouser 894-PVX012A0X3-SRZ
+  - replace: farnell 2144287
+    with: mouser 595-TPS62125DSGT
 
   # Specific parts that are out of stock. Replace with as close a match as possible.
   # mfr part no CAY10-103J4LF -> YC124-JR-0710KL (farnell's suggested alternative)
@@ -103,10 +153,10 @@ substitutions:
   # Obsolete parts. Replace with as close a match as possible.
   # mfr part no GSOT05C-GS08 > GSOT05C-E3-08 (mouser's suggested replacement)
   - replace: mouser 78-GSOT05C
-    with: mouser 78-GSOT05C-E3-08
-  # mfr part no GSOT24C-GS08 > GSOT24C-E3-08 (mouser's suggested replacement)
+    with: farnell 2433345
+  # mfr part no GSOT24C-GS08 > ESDA25LY
   - replace: mouser 78-GSOT24C
-    with: mouser 78-GSOT24C-E3-08
+    with: mouser 511-ESDA25LY
   # mfr part no 0ZCA0005FF2E > 0ZCJ0005FF2E (digikey's suggested replacement)
   - replace: digikey 507-1476-1-ND
     with: mouser 530-0ZCJ0005FF2E
