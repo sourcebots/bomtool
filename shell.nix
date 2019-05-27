@@ -10,8 +10,7 @@ pkgs.stdenv.mkDerivation {
   buildInputs = with pkgs; [
     python36
     pipenv
-    libxml2
-    libxslt
   ];
   NIX_CFLAGS_COMPILE = [ "-isystem ${pkgs.libxml2.dev}/include/libxml2" ];
+  LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.libxml2 pkgs.libxslt.out ];
 }
