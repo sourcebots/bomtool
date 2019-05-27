@@ -23,7 +23,7 @@ class RapidPart(DistributorPart):
 
   @cached_property
   def _availability(self):
-    tag = self._soup.find(class_ = "stockMessage")
+    tag = self._soup.find(class_ = "stock-message-text")
     if not tag:
       return {"status": AvailabilityStatus.UNKNOWN}
     assert len(tag.contents) >= 2
@@ -35,7 +35,7 @@ class RapidPart(DistributorPart):
     #if string in ("New product", "No Longer Manufactured", "No Longer Stocked"):
     #  return {"status": AvailabilityStatus.NOT_STOCKED}
 
-    match = re.match(r"^([0-9]+) In Stock$", string, re.IGNORECASE)
+    match = re.match(r"^([0-9]+)\s+In\s+Stock", string, re.IGNORECASE)
     if match:
       quantity = match.group(1)
       return {
