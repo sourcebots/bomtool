@@ -70,7 +70,7 @@ class MouserAPI(object):
 
   @cached_property
   def client(self):
-    client = zeep.CachingClient("http://api.mouser.com/service/searchapi.asmx?WSDL")
+    client = zeep.Client("http://api.mouser.com/service/searchapi.asmx?WSDL")
     api_key = os.environ["SB_BOMTOOL_MOUSER_API_KEY"]
     account_info_type = client.get_type("{http://api.mouser.com/service}AccountInfo")
     header_type = client.get_element("{http://api.mouser.com/service}MouserHeader")
