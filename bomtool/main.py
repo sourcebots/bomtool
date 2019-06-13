@@ -1,6 +1,6 @@
 import logging
 import argparse
-import yaml
+from ruamel.yaml import YAML
 from .util.cache import Cache
 from .util.downloader import Downloader
 from .util.google_sheets_api import GoogleSheetsAPI
@@ -17,6 +17,7 @@ def parse_cmdline():
   return parser.parse_args()
 
 def parse_config(path):
+  yaml = YAML(typ="safe")
   with open(path, "r") as file:
     return yaml.load(file.read())
 
