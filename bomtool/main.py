@@ -28,7 +28,10 @@ def parse_boards(config):
   boards = []
   for board_config in config["boards"]:
     board_class = BoardType.get_by_name(board_config["type"])
-    board = board_class(board_config["quantity"], board_config.get("dest_sheet"), board_config.get("exclude", []))
+    qty = board_config["quantity"]
+    if qty == 0:
+      continue
+    board = board_class(qty, board_config.get("dest_sheet"), board_config.get("exclude", []))
     boards.append(board)
   return boards
 
