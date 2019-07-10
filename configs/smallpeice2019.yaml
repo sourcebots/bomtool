@@ -144,6 +144,10 @@ substitutions:
     with: mouser 894-PVX012A0X3-SRZ
   - replace: farnell 2144287
     with: mouser 595-TPS62125DSGT
+  - replace: farnell 2361237
+    with: mouser 595-TPS54327DRCT
+  - replace: farnell 2061657
+    with: mouser 652-SRN6045-680M
 
   # Specific parts that are out of stock. Replace with as close a match as possible.
   # mfr part no CAY10-103J4LF -> YC124-JR-0710KL (farnell's suggested alternative)
