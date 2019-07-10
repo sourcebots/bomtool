@@ -5,6 +5,9 @@ boards:
     exclude:
       - C11
       - J5
+      - J1
+      - J2
+      - J3
   - type: motor-v4
     quantity: 16
     dest_sheet: MotorBoard
