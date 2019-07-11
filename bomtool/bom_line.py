@@ -1,6 +1,7 @@
 import math
 import logging
 import random
+import re
 from collections import namedtuple
 from wimpy import cached_property
 from .config import SPARES
@@ -32,7 +33,14 @@ _JoinedBOMLine_nt = namedtuple("JoinedBOMLine", (
   "distributor_part_factory",
 ))
 
+def part_id_to_value(s):
+  return s.split("-", 2)[2]
+
 class JoinedBOMLine(_JoinedBOMLine_nt):
+  @cached_property
+  def value(self):
+    return part_id_to_value(self.sr_part_no)
+
   @cached_property
   def distributor_part(self):
     if self.distributor_part_factory is None:

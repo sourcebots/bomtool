@@ -37,11 +37,14 @@ class BoardType(object, metaclass=ABCMeta):
 class V4PowerBoard(BoardType):
   name = "power-v4"
   bom_xls_url = "https://github.com/sourcebots/power-v4-hw/raw/master/pbv4b_bom.xls"
+  xy_path = "/home/kier/checkouts/sourcebots/kit-manufacture-2019/quote-pack/power/power-coords-raw.txt"
 
 class V4MotorBoard(BoardType):
   name = "motor-v4"
   bom_xls_url = "https://github.com/sourcebots/motor-v4-hw/raw/master/bom.xls"
+  xy_path = "/home/kier/checkouts/sourcebots/kit-manufacture-2019/quote-pack/motor/motor-coords-raw.txt"
 
 class V4ServoBoard(BoardType):
   name = "servo-v4"
   bom_xls_url = "https://github.com/sourcebots/servo-v4-hw/raw/master/sbv4b_bom.xls"
+  xy_path = "/home/kier/checkouts/sourcebots/kit-manufacture-2019/quote-pack/servo/servo-coords-raw.txt"

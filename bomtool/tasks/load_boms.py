@@ -1,5 +1,6 @@
 import logging
 import xlrd
+import csv
 from ..config import MAX_ORIGINAL_BOM_AGE
 from ..bom_line import OriginalBOMLine
 
@@ -49,5 +50,20 @@ def load_bom(board, downloader):
       instances = instances,
     )
 
+def fix_packages(board, lines):
+  packages = {}
+  with open(board.xy_path) as f:
+    rows = csv.reader(line for line in f if not line.startswith("#"))
+    for row in rows:
+      refdes, footprint, part_id, x, y, angle, layer = row
+      assert footprint.endswith("_sr.fp")
+      package = footprint[:-len("_sr.fp")]
+      packages[refdes] = package
+  for line in lines:
+    instances = iter(line.instances)
+    package = packages[next(instances)]
+    assert all(packages[other_instance] == package for other_instance in instances)
+    yield line._replace(package = package)
+
 def load_boms(boards, downloader):
-  return {board: load_bom(board, downloader) for board in boards}
+  return {board: fix_packages(board, load_bom(board, downloader)) for board in boards}
