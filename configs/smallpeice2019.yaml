@@ -140,8 +140,6 @@ substitutions:
     with: mouser 511-VND5012AKTR-E
   - replace: farnell 2079908
     with: tme KPB-2012SURKCGKC
-  - replace: farnell 3882391
-    with: rapid 21-2448
   - replace: farnell 2076909
     with: mouser 894-PVX012A0X3-SRZ
   - replace: farnell 2144287
