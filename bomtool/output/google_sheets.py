@@ -92,7 +92,6 @@ class GoogleSheetsOutput(object):
 
   def _to_board_row(self, checked_line, board):
     line = checked_line.line
-    notes = "\n".join(checked_line.errors + checked_line.warnings)
     if line.distributor is GENERIC:
       row = [
         ", ".join(line.instances_by_board.get(board, [])),
@@ -107,7 +106,7 @@ class GoogleSheetsOutput(object):
         "beta",
         "",
         "",
-        notes,
+        "",
         "",
         "",
         "",
@@ -129,7 +128,7 @@ class GoogleSheetsOutput(object):
         line.distributor,
         line.distributor_order_no,
         line.distributor_part.url,
-        notes,
+        "",
         "",
         "",
         "",
