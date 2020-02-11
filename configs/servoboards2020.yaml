@@ -8,7 +8,7 @@ generics:
   sr-c-100n-0603-50v: SMD Capacitor, 100nF, 10%, 50V, 0603
   sr-c-10n-0402-25v: SMD Capacitor, 10nF, 10%, 25V, 0402
 #  sr-c-1n5-0402-50v: SMD Capacitor, 1.5nF, 10%, 50V, 0402
-  sr-c-1u-0402-10v: SMD Capacitor, 1uF, 10%, 10V (16V is suitable), 0402
+#  sr-c-1u-0402-10v: SMD Capacitor, 1uF, 10%, 10V (16V is suitable), 0402
   sr-c-1u-0603-16v: SMD Capacitor, 1uF, 10%, 16V, 0603
 #  sr-c-22u-0805-10v: SMD Capacitor, 22uF, 10%, 10V, 0805
 #  sr-c-22u-1210-16v: SMD Capacitor, 22uF, 10%, 16V, 1210
