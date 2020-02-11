@@ -44,8 +44,6 @@ substitutions:
     with: farnell 1458896
   #- replace: farnell 2112839
   #  with: farnell 2495171
-  #- replace: farnell 1867956
-  #  with: farnell 2611932
   - replace: farnell 1759467
     with: farnell 1759466
   #- replace: farnell 1797017
@@ -138,3 +136,7 @@ substitutions:
   # mfr part no EDZTE615.1B -> EDZVT2R5.1B
   - replace: farnell 1679978
     with: farnell 2536475
+
+  # Cheaper alternatives
+  - replace: farnell 1867956
+    with: farnell 2611932
