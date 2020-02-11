@@ -45,7 +45,7 @@ class JoinedBOMLine(_JoinedBOMLine_nt):
 
   @cached_property
   def distributor_part(self):
-    if self.distributor_part_factory is None:
+    if self.distributor_part_factory is None or self.distributor is GENERIC:
       return None
     return self.distributor_part_factory.get(self.distributor, self.distributor_order_no)
 

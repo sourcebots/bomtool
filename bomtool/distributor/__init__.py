@@ -22,4 +22,4 @@ class DistributorPartFactory(object):
     elif distributor == "rapid":
       return RapidPart(order_code, self.downloader)
     else:
-      return None
+      raise Exception(f"cannot query distributor: {distributor}")
