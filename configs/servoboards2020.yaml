@@ -107,8 +107,6 @@ substitutions:
   # Specific parts that are out of stock. Replace with same part from a different distributor.
   - replace: farnell 1580575
     with: rs 715-1708
-  - replace: farnell 1679978
-    with: mouser 755-EDZTE615.1B
   - replace: farnell 2313635
     with: mouser 584-ADUM3211ARZ
   - replace: farnell 2064680
@@ -160,3 +158,6 @@ substitutions:
   # mfr part no MPI4040R3-3R3-R -> ECS-MPI4040R3-3R3-R
   - replace: farnell 2145279
     with: mouser 520-MPI4040R3-3R3-R
+  # mfr part no EDZTE615.1B -> EDZVT2R5.1B
+  - replace: farnell 1679978
+    with: farnell 2536475
