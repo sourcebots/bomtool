@@ -24,8 +24,8 @@ class MouserPart(DistributorPart):
   @cached_property
   def _availability(self):
     string = self._part_info.Availability
-    if string is None:
-      if self._part_info.LifecycleStatus == "Obsolete":
+    if string is None or string == "None":
+      if self._part_info.LifecycleStatus in ["Obsolete", "Not Recommended for New Designs"]:
         return {"status": AvailabilityStatus.NOT_STOCKED}
       else:
         raise ValueError(f"Mouser lifecycle status text did not match any known pattern: {self._part_info.LifecycleStatus!r}")
