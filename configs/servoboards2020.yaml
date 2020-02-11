@@ -1,0 +1,162 @@
+boards:
+  - type: servo-v4
+    quantity: 25
+    dest_sheet: ServoBoard
+
+generics:
+  sr-c-100n-0402-16v: SMD Capacitor, 100nF, 10%, 16V, 0402
+  sr-c-100n-0603-50v: SMD Capacitor, 100nF, 10%, 50V, 0603
+  sr-c-10n-0402-25v: SMD Capacitor, 10nF, 10%, 25V, 0402
+  sr-c-10p-0402-50v: SMD Capacitor, 10pF, 10%, 50V, 0402
+  sr-c-10u-1206-16v: SMD Capacitor, 10uF, 10%, 16V, 1206
+  sr-c-1n-0402-50v: SMD Capacitor, 1nF, 10%, 50V, 0402
+#  sr-c-1n5-0402-50v: SMD Capacitor, 1.5nF, 10%, 50V, 0402
+  sr-c-1u-0402-10v: SMD Capacitor, 1uF, 10%, 10V (16V is suitable), 0402
+  sr-c-1u-0603-16v: SMD Capacitor, 1uF, 10%, 16V, 0603
+  sr-c-220n-0402-16v: SMD Capacitor, 220nF, 10%, 16V, 0402
+#  sr-c-22u-0805-10v: SMD Capacitor, 22uF, 10%, 10V, 0805
+#  sr-c-22u-0805-6v3: SMD Capacitor, 22uF, 10%, 6.3V, 0805
+#  sr-c-22u-1210-16v: SMD Capacitor, 22uF, 10%, 16V, 1210
+#  sr-c-27p-0402-50v: SMD Capacitor, 27pF, 10%, 50V, 0402
+#  sr-c-2u2-1206-50v: SMD Capacitor, 2.2uF, 10%, 50V, 1206
+#  sr-c-33n-0402-25v: SMD Capacitor, 33nF, 10%, 25V, 0402
+#  sr-c-470n-0603-25v: SMD Capacitor, 470nF, 10%, 25V, 0603
+  sr-c-47n-0603-50v: SMD Capacitor, 47nF, 10%, 50V, 0603
+#  sr-c-47u-1206-6v3: SMD Capacitor, 47uF, 10%, 6.3V, 1206
+  sr-c-4u7-0805-10v: SMD Capacitor, 4.7uF, 10%, 10V (25V is suitable), 0805
+  sr-r-10-0402: SMD Resistor, 10ohm, 1%, 62.5mW, 0402
+  sr-r-100-0402: SMD Resistor, 100ohm, 1%, 62.5mW, 0402
+  sr-r-1000k-0402: SMD Resistor, 1Mohm, 1%, 62.5mW, 0402
+  sr-r-10k: SMD Resistor, 10kohm, 1%, 62.5mW, 0603
+  sr-r-10k-0402: SMD Resistor, 10kohm, 1%, 62.5mW, 0402
+#  sr-r-10m-0805: SMD Resistor, 10milliohm, 1%, 250mW, 0805
+  sr-r-150k-0402: SMD Resistor, 150kohm, 1%, 62.5mW, 0402
+  sr-r-180k-0402: SMD Resistor, 180kohm, 1%, 62.5mW, 0402
+  sr-r-1k-0402: SMD Resistor, 1kohm, 1%, 62.5mW, 0402
+  sr-r-1k-0805: SMD Resistor, 1kohm, 1%, 125mW, 0805
+  sr-r-1k-1206: SMD Resistor, 1kohm, 1%, 250mW, 1206
+  sr-r-1k1-0402: SMD Resistor, 1.1kohm, 1%, 62.5mW, 0402
+#  sr-r-200-0402: SMD Resistor, 200ohm, 1%, 62.5mW, 0402
+#  sr-r-2k49-0402: SMD Resistor, 2.49kohm, 1%, 62.5mW, 0402
+  sr-r-330-0402: SMD Resistor, 330ohm, 1%, 62.5mW, 0402
+#  sr-r-33k2-0402: SMD Resistor, 33.2kohm, 1%, 62.5mW, 0402
+  sr-r-390-0402: SMD Resistor, 390ohm, 1%, 62.5mW, 0402
+  sr-r-3k3-0402: SMD Resistor, 3.3kohm, 1%, 62.5mW, 0402
+#  sr-r-4700k-0402: SMD Resistor, 4700kohm, 1%, 62.5mW, 0402
+#  sr-r-4k3-0402: SMD Resistor, 4.3kohm, 1%, 62.5mW, 0402
+  sr-r-4k7-0402: SMD Resistor, 4.7kohm, 1%, 62.5mW, 0402
+  sr-r-560-0402: SMD Resistor, 560ohm, 1%, 62.5mW, 0402
+#  sr-r-576k-0402: SMD Resistor, 576kohm, 1%, 62.5mW, 0402
+#  sr-r-57k6-0402: SMD Resistor, 57.6kohm, 1%, 62.5mW, 0402
+#  sr-r-64k9-0402: SMD Resistor, 64.9kohm, 1%, 62.5mW, 0402
+  sr-r-680-1206: SMD Resistor, 680ohm, 1%, 500mW, 1206
+
+substitutions:
+  # Unusual or unqueryable distributors. Replace with same part from a different distributor.
+  - replace: wurth 7460305
+    with: farnell 1821273
+  - replace: verical VNH5019A-E
+    with: mouser 511-VNH5019ATR-E
+  - replace: digikey 609-4048-6-ND
+    with: farnell 2490660
+
+  # Generic parts that are out of stock. Replace with any compatible part.
+  - replace: farnell 1758924
+    with: farnell 2533995
+  - replace: farnell 2070502
+    with: farnell 2113073
+  - replace: farnell 1759381
+    with: farnell 1458896
+  - replace: farnell 2112839
+    with: farnell 2495171
+  - replace: farnell 1867956
+    with: farnell 2611932
+  - replace: farnell 1759467
+    with: farnell 1759466
+  - replace: farnell 1797017
+    with: farnell 2688488
+  - replace: farnell 1865445
+    with: farnell 2627357
+  - replace: farnell 1828809
+    with: mouser 81-GRT31CR61A476KE3L
+  - replace: farnell 1833814
+    with: farnell 2776871
+  - replace: farnell 9330399
+    with: farnell 2447230
+  - replace: farnell 2072516
+    with: farnell 2078861
+  - replace: farnell 2073606
+    with: farnell 2447587
+  - replace: farnell 2072927
+    with: farnell 1469709
+  - replace: farnell 2073030
+    with: farnell 2447185
+  - replace: farnell 2073149
+    with: mouser 603-RC0402FR-07576KL
+  - replace: farnell 1593441
+    with: farnell 1022233
+  - replace: farnell 2073877
+    with: farnell 2447473
+  - replace: farnell 2141492
+    with: farnell 2447191
+  - replace: farnell 2073064
+    with: farnell 1469712
+  - replace: farnell 2073129
+    with: farnell 2447197
+
+  # Specific parts that are out of stock. Replace with same part from a different distributor.
+  - replace: farnell 1580575
+    with: rs 715-1708
+  - replace: farnell 1679978
+    with: mouser 755-EDZTE615.1B
+  - replace: farnell 2313635
+    with: mouser 584-ADUM3211ARZ
+  - replace: farnell 2064680
+    with: mouser 926-LMR14203XMK/NOPB
+  - replace: farnell 2292500
+    with: mouser 875-TYS252012L220M10
+  - replace: farnell 1651958
+    with: mouser 863-STF202-22T1G
+  - replace: rs 445-781
+    with: mouser 511-VND5012AKTR-E
+  - replace: farnell 2079908
+    with: tme KPB-2012SURKCGKC
+  - replace: farnell 2076909
+    with: mouser 894-PVX012A0X3-SRZ
+  - replace: farnell 2144287
+    with: mouser 595-TPS62125DSGT
+  - replace: farnell 2361237
+    with: mouser 595-TPS54327DRCT
+  - replace: farnell 2061657
+    with: mouser 652-SRN6045-680M
+
+  # Specific parts that are out of stock. Replace with as close a match as possible.
+  # mfr part no CAY10-103J4LF -> YC124-JR-0710KL (farnell's suggested alternative)
+  - replace: farnell 1770152
+    with: farnell 9235418
+  # mfr part no CTB93HE/2 -> MC1,5/2-G-3,81 (farnell's suggested alternative)
+  - replace: farnell 1717071
+    with: farnell 3704725
+
+  # Obsolete parts. Replace with as close a match as possible.
+  # mfr part no GSOT05C-GS08 > GSOT05C-E3-08 (mouser's suggested replacement)
+  - replace: mouser 78-GSOT05C
+    with: farnell 2433345
+  # mfr part no GSOT24C-GS08 > ESDA25LY
+  - replace: mouser 78-GSOT24C
+    with: mouser 511-ESDA25LY
+  # mfr part no 0ZCA0005FF2E > 0ZCJ0005FF2E (digikey's suggested replacement)
+  - replace: digikey 507-1476-1-ND
+    with: mouser 530-0ZCJ0005FF2E
+  # mfr part no BSH121,135 -> BSS138BKW,115 (nexperia's suggested replacement)
+  # Note that the Farnell product page for BSH121,135 is wrong and the Ids of the
+  # BSH121,135 is actually 300mA; hence there is no problem in switching to a 320mA part.
+  - replace: farnell 1758072
+    with: farnell 2053836
+  # mfr part no IRFH5301TR2PBF -> IRFH5301TRPBF (International Rectifier EOL Notice #259)
+  # This is exactly the same part, just different packaging.
+  - replace: farnell 1782047
+    with: farnell 2580009
+  # mfr part no MPI4040R3-3R3-R -> ECS-MPI4040R3-3R3-R
+  - replace: farnell 2145279
+    with: mouser 520-MPI4040R3-3R3-R
