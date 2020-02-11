@@ -16,7 +16,11 @@ In the future, this will hopefully:
 
 Check out this repo and `cd` to it.
 
-Install dependencies by running `pipenv install --pre`. `--pre` is required because currently only pre-release versions of `pyyaml` are [considered secure](https://nvd.nist.gov/vuln/detail/CVE-2017-18342).
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -e .
+```
 
 Set up environment variables:
 
@@ -26,7 +30,7 @@ Set up environment variables:
 Execute `bomtool` by running:
 
 ```sh
-pipenv run python -m bomtool path/to/config.yaml OUTPUT_SPEC
+bomtool path/to/config.yaml OUTPUT_SPEC
 ```
 
 where currently the only valid form of `OUTPUT_SPEC` is `googlesheet:SPREADSHEET_ID`. Here, `SPREADSHEET_ID` should be replaced with the long alphanumeric identifier present in the URL of the spreadsheet.
@@ -34,5 +38,5 @@ where currently the only valid form of `OUTPUT_SPEC` is `googlesheet:SPREADSHEET
 For example:
 
 ```sh
-pipenv run python -m bomtool configs/smallpeice2019.yaml googlesheet:1eTEkgsXN6JzumoYiGoEkO7YOBuCE3r4QvOJFlK_qb0s
+bomtool configs/smallpeice2019.yaml googlesheet:1eTEkgsXN6JzumoYiGoEkO7YOBuCE3r4QvOJFlK_qb0s
 ```

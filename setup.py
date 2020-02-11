@@ -14,4 +14,16 @@ setup(
       "bomtool = bomtool.main:main",
     ],
   },
+  install_requires = [
+    "beautifulsoup4",
+    "google-api-python-client",
+    "google-auth-httplib2",
+    "google-auth-oauthlib",
+    "ratelimit",
+    "ruamel.yaml",
+    "requests",
+    "wimpy",
+    "xlrd",
+    "zeep",
+  ],
 )
